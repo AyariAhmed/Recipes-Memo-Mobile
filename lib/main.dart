@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recipes_memo/categories_screen.dart';
+import 'package:recipes_memo/category_meals_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -8,6 +9,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'DeliMeals',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
           primarySwatch: Colors.pink,
           accentColor: Colors.amber,
@@ -22,26 +24,13 @@ class MyApp extends StatelessWidget {
                   fontFamily: 'RobotoCondensed',
                   fontSize: 20,
                   fontWeight: FontWeight.bold))),
-      home: CategoriesScreen(),
+      /*home: CategoriesScreen(),*/
+      initialRoute: '/', // default is '/'
+      routes: {
+          '/' : (ctx) => CategoriesScreen(),
+          CategoryMealsScreen.routeName : (ctx) => CategoryMealsScreen(),
+      },
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('DeliMeals'),
-      ),
-      body: Center(
-        child: Text('Navigation Time!'),
-      ),
-    );
-  }
-}
