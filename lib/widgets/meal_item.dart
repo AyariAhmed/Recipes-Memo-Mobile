@@ -1,9 +1,9 @@
-import 'dart:ffi';
-
-import 'package:flutter/material.dart';
+ import 'package:flutter/material.dart';
 import 'package:recipes_memo/models/meal.dart';
+import 'package:recipes_memo/screens/meal_detail_screen.dart';
 
 class MealItem extends StatelessWidget {
+  final String id;
   final String title;
   final String imageUrl;
   final int duration;
@@ -11,7 +11,8 @@ class MealItem extends StatelessWidget {
   final Affordability affordability;
 
   MealItem(
-      {@required this.title,
+      {@required this.id,
+      @required this.title,
       @required this.imageUrl,
       @required this.duration,
       @required this.complexity,
@@ -30,23 +31,29 @@ class MealItem extends StatelessWidget {
     }
   }
 
-  String get affordabilityText{
-    switch(affordability){
-      case Affordability.Affordable : return 'Affordable';
-      case Affordability.Luxurious : return 'Expensive';
-      case Affordability.Pricey : return 'Pricey';
-      default : return 'Unknown';
+  String get affordabilityText {
+    switch (affordability) {
+      case Affordability.Affordable:
+        return 'Affordable';
+      case Affordability.Luxurious:
+        return 'Expensive';
+      case Affordability.Pricey:
+        return 'Pricey';
+      default:
+        return 'Unknown';
     }
   }
 
-  void selectMeal() {}
+  void selectMeal(BuildContext ctx) {
+    Navigator.of(ctx)
+        .pushNamed(MealDetailScreen.routeName, arguments: id);
+  }
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: selectMeal,
+      onTap: () => selectMeal(context),
       borderRadius: BorderRadius.circular(15),
-      splashColor: Theme.of(context).primaryColor,
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         elevation: 4,

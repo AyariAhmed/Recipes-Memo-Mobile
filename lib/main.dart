@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:recipes_memo/screens/categories_screen.dart';
 import 'package:recipes_memo/screens/category_meals_screen.dart';
+import 'package:recipes_memo/screens/meal_detail_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -29,6 +30,17 @@ class MyApp extends StatelessWidget {
       routes: {
           '/' : (ctx) => CategoriesScreen(),
           CategoryMealsScreen.routeName : (ctx) => CategoryMealsScreen(),
+          MealDetailScreen.routeName : (ctx) => MealDetailScreen()
+      },
+      /*onGenerateRoute: (settings){
+        print(settings.arguments);
+        if(settings.name == '/meal-detail')
+          return MaterialPageRoute(builder: (ctx)=> MealDetailScreen());
+        return MaterialPageRoute(builder: (ctx) => CategoryMealsScreen());
+      },*/
+      onUnknownRoute: (setting){
+        // onUnknownRoute is used as a last Resort when no route is found
+        return MaterialPageRoute(builder: (ctx) => CategoriesScreen());
       },
     );
   }
