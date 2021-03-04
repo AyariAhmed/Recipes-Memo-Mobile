@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:recipes_memo/screens/filters_screen.dart';
+import 'package:recipes_memo/screens/tabs_screen.dart';
 
 class MainDrawer extends StatelessWidget {
-  Widget buildListTile({@required String title, @required IconData icon, @required Function tapHandler}) {
+  Widget buildListTile(
+      {@required String title,
+      @required IconData icon,
+      @required Function tapHandler}) {
     return ListTile(
       leading: Icon(icon),
       title: Text(
@@ -34,16 +38,22 @@ class MainDrawer extends StatelessWidget {
                   fontSize: 30,
                   color: Theme.of(context).primaryColor),
             ),
-          ),
+           ),
           SizedBox(
             height: 20,
           ),
-          buildListTile(title: 'Meals', icon: Icons.restaurant, tapHandler: (){
-              Navigator.of(context).pushNamed('/');
-          }),
-          buildListTile(title: 'Filters', icon: Icons.settings, tapHandler: () {
-              Navigator.of(context).pushNamed(FiltersScreen.routeName);
-          }),
+          buildListTile(
+              title: 'Meals',
+              icon: Icons.restaurant,
+              tapHandler: () {
+                Navigator.of(context).pushReplacementNamed(TabsScreen.routeName);
+              }),
+          buildListTile(
+              title: 'Filters',
+              icon: Icons.settings,
+              tapHandler: () {
+                Navigator.of(context).pushReplacementNamed(FiltersScreen.routeName);
+              }),
         ],
       ),
     );

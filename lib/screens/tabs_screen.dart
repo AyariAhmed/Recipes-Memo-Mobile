@@ -4,6 +4,7 @@ import 'package:recipes_memo/screens/favorites_screen.dart';
 import 'package:recipes_memo/widgets/main_drawer.dart';
 
 class TabsScreen extends StatefulWidget {
+  static const routeName = '/';
   @override
   _TabsScreenState createState() => _TabsScreenState();
 }
